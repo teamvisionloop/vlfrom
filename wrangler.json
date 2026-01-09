@@ -1,0 +1,16 @@
+{
+	"compatibility_date": "2025-10-08",
+	"main": "src/index.ts",
+	"name": "vlfrom",
+	"upload_source_maps": true,
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_id": "12ee5c48-e468-4656-8c08-d75f841af2f1",
+			"database_name": "visionloop"
+		}
+	],
+	"observability": {
+		"enabled": true
+	}
+}
