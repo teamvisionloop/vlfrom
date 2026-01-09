@@ -5,6 +5,5 @@ CREATE TABLE IF NOT EXISTS contacts (
     email TEXT NOT NULL,
     phone TEXT NOT NULL,
     subject TEXT NOT NULL,
-    message TEXT NOT NULL,
-    submitted_at DATETIME DEFAULT CURRENT_TIMESTAMP
-);
+    message TEXT NOT NULL
+    );
