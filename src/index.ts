@@ -1,14 +1,16 @@
-import { renderHtml } from "./renderHtml";
-
 export default {
-	async fetch(request, env) {
-		const stmt = env.DB.prepare("SELECT * FROM comments LIMIT 3");
-		const { results } = await stmt.all();
+  async fetch(request, env) {
+    if (request.method !== "POST") {
+      return new Response("Send a POST request");
+    }
 
-		return new Response(renderHtml(JSON.stringify(results, null, 2)), {
-			headers: {
-				"content-type": "text/html",
-			},
-		});
-	},
-} satisfies ExportedHandler<Env>;
+    const { name, email, phone, subject, message } = await request.json();
+
+    await env.DB.prepare(`
+      INSERT INTO contacts (name, email, phone, subject, message)
+      VALUES (?, ?, ?, ?, ?)
+    `).bind(name, email, phone, subject, message).run();
+
+    return new Response("Form submitted successfully");
+  }
+};
